@@ -13,7 +13,7 @@ public class SplashScreen extends Application {
     public static final int screenHeight = (int) Screen.getPrimary().getBounds().getHeight() - 200;
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(SplashScreen.class.getResource("splash-screen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("splash-screen.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), screenWidth, screenHeight);
         stage.setTitle("Cross Country Meet Tracker");
         stage.setScene(scene);

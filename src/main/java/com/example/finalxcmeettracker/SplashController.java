@@ -20,13 +20,7 @@ public class SplashController {
     private Button startMeetButton;
     @FXML
     protected void onStartMeetButtonClick() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("meet-screen.fxml"));
-        Parent root = loader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root, screenWidth, screenHeight));
-        stage.setMaximized(true);
-        stage.setTitle("Meet Screen");
-        ((Stage) welcomeText.getScene().getWindow()).close(); // this could be any attribute, but I am using welcomeText
-        stage.show();
+        MeetScreen m = new MeetScreen();
+        m.start((Stage) welcomeText.getScene().getWindow());
     }
 }
