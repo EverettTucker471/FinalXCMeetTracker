@@ -13,4 +13,5 @@
 
     <Label fx:id="welcomeText" text="Welcome to the XC Meet Tracker!"/>
     <Button fx:id="startMeetButton" text="Start Meet" onAction="#onStartMeetButtonClick"/>
+    <Button fx:id="loadMeetButton" text="Load Meet" onAction="#onLoadMeetButtonClick"/>
 </VBox>

@@ -10,6 +10,7 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
-    <Label fx:id="welcomeText"/>
+    <Label text="Nothing has been changed yet." fx:id="currentTimeLabel"/>
     <Button text="Goodbye" fx:id="goodbyeButton" onAction="#onGoodbyeButtonClick"/>
+    <Button text="Begin Meet" fx:id="beginMeetButton" onAction="#onBeginMeetButtonClick"/>
 </VBox>

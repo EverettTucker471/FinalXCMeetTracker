@@ -5,16 +5,22 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class MeetController {
     @FXML
-    public Label welcomeText;
+    private Label currentTimeLabel;
     @FXML
-    public Button goodbyeButton;
+    private Button goodbyeButton;
     @FXML
-    protected void onGoodbyeButtonClick() throws IOException {
-        (new SplashScreen()).start(new Stage()); // Starting the new screen
-        ((Stage) goodbyeButton.getScene().getWindow()).close(); // Closing the old screen
+    private Button beginMeetButton;
+    @FXML
+    protected void onGoodbyeButtonClick() {
+        Stage stage = (Stage) currentTimeLabel.getScene().getWindow(); // getting the current stage, should be the same always
+        stage.setScene(Main.splash_scene);
+        stage.show();
+    }
+    @FXML
+    protected void onBeginMeetButtonClick() {}
+    public void setCurrentTimeLabel(String s) {
+        currentTimeLabel.setText(s);
     }
 }
