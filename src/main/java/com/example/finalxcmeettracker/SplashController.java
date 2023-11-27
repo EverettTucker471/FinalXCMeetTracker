@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 public class SplashController {
     @FXML
-    private Label welcomeText; // Use some attribute to get the current screen for closing
+    private Label welcomeText; // Use some attribute to get the current stage
     @FXML
     private Button startMeetButton;
     @FXML

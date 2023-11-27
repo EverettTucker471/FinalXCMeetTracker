@@ -11,6 +11,7 @@
     </padding>
 
     <Label text="Nothing has been changed yet." fx:id="currentTimeLabel"/>
-    <Button text="Goodbye" fx:id="goodbyeButton" onAction="#onGoodbyeButtonClick"/>
+    <Button text="Return" fx:id="returnButton" onAction="#onReturnButtonClick"/>
     <Button text="Begin Meet" fx:id="beginMeetButton" onAction="#onBeginMeetButtonClick"/>
+    <Button text="Stop Meet" fx:id="stopMeetButton" onAction="#onStopMeetButtonClick"/>
 </VBox>
