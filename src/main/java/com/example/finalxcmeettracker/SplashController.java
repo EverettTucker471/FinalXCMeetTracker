@@ -15,7 +15,7 @@ public class SplashController {
     @FXML
     protected void onStartMeetButtonClick() {
         Stage stage = (Stage) welcomeText.getScene().getWindow();
-        stage.setScene(Main.meet_scene);
+        stage.setScene(Main.meetScene);
         stage.show();
     }
     @FXML
