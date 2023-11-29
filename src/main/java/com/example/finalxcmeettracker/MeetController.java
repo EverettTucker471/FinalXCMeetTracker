@@ -1,28 +1,51 @@
 package com.example.finalxcmeettracker;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import java.util.Timer;
-import java.util.TimerTask;
+
+import java.util.*;
 
 public class MeetController {
     @FXML
     private Label currentTimeLabel;
     @FXML
-    private Button returnButton;
+    private Button returnButton, stopMeetButton, beginMeetButton, enterMeetInformationButton, addTimeButton;
     @FXML
-    private Button stopMeetButton;
-    @FXML
-    private Button beginMeetButton;
+    private ScrollPane boxesQueue;
+    private Heap<Athlete> athleteHeap;
     private long timestamp;
-    public final Timer meetTimer = new Timer();
+    public Timer meetTimer;
+    private VBox boxes;
+
+    public MeetController() {
+        // TODO: Change the initial size parameter to function with the number of runners.
+        athleteHeap = new Heap<>(10);
+        meetTimer = new Timer();
+        boxes = new VBox(8);
+    }
+
     @FXML
     protected void onReturnButtonClick() {
         Stage stage = (Stage) currentTimeLabel.getScene().getWindow(); // getting the current stage, should be the same always
-        stage.setScene(Main.splash_scene);
+        stage.setScene(Main.splashScene);
+        stage.show();
+    }
+
+    @FXML
+    protected void onEnterMeetInformationButtonClick() {
+        Stage stage = (Stage) currentTimeLabel.getScene().getWindow();
+        stage.setScene(Main.informationScene);
         stage.show();
     }
 
@@ -33,10 +56,14 @@ public class MeetController {
     @FXML
     protected void onStopMeetButtonClick() {
         meetTimer.cancel();
+        addTimeButton.setVisible(false);
     }
     @FXML
     protected void onBeginMeetButtonClick() {
         timestamp = System.currentTimeMillis();
+
+        addTimeButton.setVisible(true);
+
         try {
             meetTimer.scheduleAtFixedRate(new TimerTask() {
                 @Override
@@ -49,11 +76,24 @@ public class MeetController {
         }
     }
 
+    @FXML
+    protected void onAddTimeButtonClick() {
+        boxes.getChildren().add(new BoxContainer(System.currentTimeMillis() - timestamp));
+        boxesQueue.setContent(boxes);
+    }
+
     /**
-     * Updates the time display with System.currentTimeMillis()
-     * Formats the time as HH:MM:SS.sss
+     * Updates the time label
      */
     public void updateTimer() {
+        currentTimeLabel.setText(getFormattedTime());
+    }
+
+    /**
+     * Formats the time
+     * @return time in the format HH:MM:SS.sss
+     */
+    public String getFormattedTime() {
         long delta_time = System.currentTimeMillis() - timestamp;
         int hours = (int) (delta_time / 3600000);
         delta_time %= 3600000;
@@ -61,6 +101,34 @@ public class MeetController {
         delta_time %= 60000;
         int seconds = (int) (delta_time / 1000);
         delta_time %= 1000;
-        currentTimeLabel.setText(String.format("%02d", hours) + ":" + String.format("%02d", minutes) + ":" + String.format("%02d", seconds) + "." + delta_time);
+        return String.format("%02d", hours) + ":" + String.format("%02d", minutes) + ":" + String.format("%02d", seconds) + "." + delta_time;
+    }
+
+    // I want to extend CustomNode, but I can't import that class for some reason.
+    private class BoxContainer extends Parent {
+        public double time;
+        public HBox container;
+        public Text boxLabel;
+        public TextField boxTimeSlot;
+        public Button boxSubmit;
+
+        public BoxContainer(double time) {
+            this.time = time;
+            container = new HBox(5);
+            boxLabel = new Text("ID for time of " + getFormattedTime());
+            boxTimeSlot = new TextField("");
+            boxSubmit = new Button("Submit");
+            container.getChildren().addAll(boxLabel, boxTimeSlot, boxSubmit);
+            getChildren().add(container);
+            boxSubmit.setOnAction(new AddButtonListener());
+        }
+
+        public class AddButtonListener implements EventHandler<ActionEvent> {
+            public void handle(ActionEvent event ){
+                Button source = (Button) event.getSource();
+                BoxContainer boxContainer = (BoxContainer) source.getParent().getParent();
+                boxes.getChildren().remove(boxContainer);
+            }
+        }
     }
 }
