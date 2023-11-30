@@ -2,7 +2,15 @@ package com.example.finalxcmeettracker;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -17,10 +25,10 @@ public class Main extends Application {
     public static Scene informationScene;
     @Override
     public void start(Stage stage) throws IOException {
-        splashScene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("splash-screen.fxml"))), screenWidth, screenHeight);
         meetScene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("meet-screen.fxml"))), screenWidth, screenHeight);
         informationScene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("information-screen.fxml"))), screenWidth, screenHeight);
-
+        SplashController splashController = new SplashController();
+        splashController.init(stage);
         stage.setScene(splashScene);
         stage.show();
     }
