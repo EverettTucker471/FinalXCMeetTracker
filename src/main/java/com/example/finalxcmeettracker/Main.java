@@ -1,6 +1,7 @@
 package com.example.finalxcmeettracker;
 
 import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
@@ -10,8 +11,9 @@ import java.util.Objects;
 
 public class Main extends Application {
     // Global variables for storing the screen size, might not be necessary
-    public static final int screenWidth = (int) Screen.getPrimary().getBounds().getWidth() - 50;
-    public static final int screenHeight = (int) Screen.getPrimary().getBounds().getHeight() - 100;
+    public static final int screenWidth = (int) Screen.getPrimary().getBounds().getWidth() - 100;
+    public static final int screenHeight = (int) Screen.getPrimary().getBounds().getHeight() - 200;
+    public static HostServices hostServices; // Used for opening websites from Javafx
     public static Scene splashScene;
     public static Scene meetScene;
     public static Scene informationScene;
@@ -39,6 +41,7 @@ public class Main extends Application {
 
         resultsScene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("results-screen.fxml"))), screenWidth, screenHeight);
 
+        hostServices = getHostServices();
         Main.splashController.reset();
     }
 

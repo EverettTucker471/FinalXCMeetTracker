@@ -2,7 +2,6 @@ package com.example.finalxcmeettracker;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -126,6 +125,8 @@ public class InformationController {
 
             // Adding the athlete to the team
             team.addAthlete(athlete);
+
+            athlete.setBibNumber(meet.getNumAthletes());
 
             // Adding this information to a label so that the organizer can check their information
             Label label = new Label(athleteName + " - " + team.getName());

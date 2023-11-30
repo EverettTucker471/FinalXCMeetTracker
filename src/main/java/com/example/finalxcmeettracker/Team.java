@@ -16,6 +16,7 @@ public class Team implements Comparable<Team> {
     public boolean addAthlete(Athlete a) {
         if (a != null) {
             this.athletes.add(a);
+            InformationController.meet.addAthlete();
             return true;
         } else {
             return false;
@@ -61,7 +62,9 @@ public class Team implements Comparable<Team> {
         }
         long sum = 0;
         for (Athlete athlete : athletes) {
-            sum += athlete.getTime();
+            if (athlete.getFinished()) {
+                sum += athlete.getTime();
+            }
         }
         return sum / n;
     }

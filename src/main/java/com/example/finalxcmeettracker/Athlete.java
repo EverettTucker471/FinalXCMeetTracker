@@ -44,6 +44,13 @@ public class Athlete implements Comparable<Athlete> {
         throw new IllegalCallerException("Athlete has not finished.");
     }
 
+    public int getBibNumber() {
+        return this.bibNumber;
+    }
+    public boolean getFinished() {
+        return this.finished;
+    }
+
     public boolean setPlacement(int place) {
         if (place > 0) {
             this.placement = place;

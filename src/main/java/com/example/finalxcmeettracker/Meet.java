@@ -9,7 +9,7 @@ public class Meet {
     private ArrayList<Team> teams;
     private HashMap<Integer, Athlete> bibNumbers;
     private Heap<Team> teamHeap;
-    private int num_athletes;
+    private int numAthletes;
 
     public Meet() {
         this.teams = new ArrayList<>();
@@ -44,6 +44,10 @@ public class Meet {
         return false;
     }
 
+    public void addAthlete() {
+        this.numAthletes++;
+    }
+
     public void generateBibNumbers() {
         int index = 1;
         for (Team t : teams) {
@@ -53,7 +57,7 @@ public class Meet {
                 index++;
             }
         }
-        num_athletes = index - 1;
+        numAthletes = index - 1;
     }
 
     public Team getTeam(int index) {
@@ -74,7 +78,9 @@ public class Meet {
         for (Team team : teams) {
             int score = 0;
             for (Athlete athlete : team.getAthletes()) {
-                score += athlete.getPlacement();
+                if (athlete.getFinished()) {
+                    score += athlete.getPlacement();
+                }
             }
             team.setScore(score);
             teamHeap.push(team);
@@ -86,6 +92,6 @@ public class Meet {
     }
 
     public int getNumAthletes() {
-        return num_athletes;
+        return numAthletes;
     }
 }

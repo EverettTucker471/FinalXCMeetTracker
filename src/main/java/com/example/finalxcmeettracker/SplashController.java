@@ -34,13 +34,21 @@ public class SplashController {
         }
     }
 
+    private class HelpHandler implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            // Launches the user guide on the user's preferred browser.
+            Main.hostServices.showDocument("https://docs.google.com/document/d/1hTfAB1i0mzD2IQIC0EV52bem7irADb8xev8oG6TRUhs/edit");
+        }
+    }
+
     public void init(Stage stage) {
         // gets main stage
         this.stage = stage;
 
         // handles background image
         final ImageView imageView = new ImageView(
-                new Image("C:\\Users\\vince\\IdeaProjects\\FinalXCMeetTracker\\src\\main\\resources\\com\\example\\finalxcmeettracker\\meetAppBackground.jpg")
+                new Image("C:\\Users\\legoe\\IdeaProjects\\FinalXCMeetTracker\\src\\main\\resources\\com\\example\\finalxcmeettracker\\meetAppBackground.jpg")
         );
         imageView.setFitHeight(480);
         imageView.setFitWidth(640);
@@ -56,6 +64,7 @@ public class SplashController {
 
         startMeetButton.setOnAction(new StartMeetHandler());
         loadMeetButton.setOnAction(new LoadMeetHandler());
+        helpButton.setOnAction(new HelpHandler());
 
         startMeetButton.setStyle(Main.buttonStyle);
         loadMeetButton.setStyle(Main.buttonStyle);

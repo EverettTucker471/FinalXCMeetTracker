@@ -3,7 +3,6 @@ package com.example.finalxcmeettracker;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 
 public class ResultsController {
     @FXML
@@ -19,8 +18,10 @@ public class ResultsController {
         while (!heap.isEmpty()) {
             Athlete athlete = heap.pop();
             athlete.setPlacement(i);
-            athleteLabel.setText(athleteLabel.getText() + "\n" + i + " | " + formatTime(athlete.getTime()) + " | " + athlete.getName() + " | " + athlete.getTeam().getName());
-            i++;
+            if (athlete.getFinished()) {
+                athleteLabel.setText(athleteLabel.getText() + "\n" + i + " | " + formatTime(athlete.getTime()) + " | " + athlete.getName() + " | " + athlete.getTeam().getName());
+                i++;
+            }
         }
         InformationController.meet.calculateTeamScores();
         // Sort the team scores
