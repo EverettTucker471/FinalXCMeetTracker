@@ -6,7 +6,7 @@ public class Athlete implements Comparable<Athlete> {
     private int bibNumber;
     private long time;
     private int placement;
-    private final boolean finished;
+    private boolean finished;
 
     public Athlete(String name, Team team) {
         this.name = name;
@@ -42,6 +42,19 @@ public class Athlete implements Comparable<Athlete> {
             return this.placement;
         }
         throw new IllegalCallerException("Athlete has not finished.");
+    }
+
+    public boolean setPlacement(int place) {
+        if (place > 0) {
+            this.placement = place;
+            return true;
+        }
+        return false;
+    }
+
+    public void finish(long time) {
+        this.finished = true;
+        this.time = time;
     }
 
     @Override

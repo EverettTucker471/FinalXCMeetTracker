@@ -8,11 +8,13 @@ public class Meet {
     private String description;
     private ArrayList<Team> teams;
     private HashMap<Integer, Athlete> bibNumbers;
+    private Heap<Team> teamHeap;
     private int num_athletes;
 
     public Meet() {
         this.teams = new ArrayList<>();
         this.bibNumbers = new HashMap<>();
+        this.teamHeap = new Heap<>(10);
     }
 
     public Meet(String name) {
@@ -59,6 +61,28 @@ public class Meet {
             return teams.get(index);
         }
         return null;
+    }
+
+    public Athlete getAndRemoveAthlete(int number) {
+        Athlete athlete = bibNumbers.getOrDefault(number, null);
+        bibNumbers.remove(number, athlete);
+        return athlete;
+    }
+
+    public void calculateTeamScores() {
+        // Possibly change this to only score teams that had more than 5 runners
+        for (Team team : teams) {
+            int score = 0;
+            for (Athlete athlete : team.getAthletes()) {
+                score += athlete.getPlacement();
+            }
+            team.setScore(score);
+            teamHeap.push(team);
+        }
+    }
+
+    public Heap<Team> getTeamHeap() {
+        return teamHeap;
     }
 
     public int getNumAthletes() {

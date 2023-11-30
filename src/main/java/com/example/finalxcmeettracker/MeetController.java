@@ -20,10 +20,11 @@ public class MeetController {
     @FXML
     private Label currentTimeLabel;
     @FXML
-    private Button returnButton, stopMeetButton, beginMeetButton, enterMeetInformationButton, addTimeButton;
+    private Button returnButton, stopMeetButton, beginMeetButton, enterMeetInformationButton, addTimeButton, viewResultsButton, undoButton;
     @FXML
     private ScrollPane boxesQueue;
-    private Heap<Athlete> athleteHeap;
+    public static Heap<Athlete> athleteHeap;
+    private Stack<BoxContainer> undoStack;
     private long timestamp;
     public Timer meetTimer;
     private VBox boxes;
@@ -31,6 +32,7 @@ public class MeetController {
     public MeetController() {
         // TODO: Change the initial size parameter to function with the number of runners.
         athleteHeap = new Heap<>(10);
+        undoStack = new Stack<>();
         meetTimer = new Timer();
         boxes = new VBox(8);
     }
@@ -78,8 +80,26 @@ public class MeetController {
 
     @FXML
     protected void onAddTimeButtonClick() {
-        boxes.getChildren().add(new BoxContainer(System.currentTimeMillis() - timestamp));
+        BoxContainer box = new BoxContainer(System.currentTimeMillis() - timestamp);
+        undoStack.push(box);
+        boxes.getChildren().add(box);
         boxesQueue.setContent(boxes);
+    }
+
+    @FXML
+    protected void onViewResultsButtonClick() {
+        Stage stage = (Stage) currentTimeLabel.getScene().getWindow();
+        stage.setScene(Main.resultsScene);
+        stage.show();
+    }
+
+    @FXML
+    protected void onUndoButtonClick() {
+        if (!undoStack.isEmpty()) {
+            BoxContainer box = undoStack.pop();
+            boxes.getChildren().remove(box);
+            boxesQueue.setContent(boxes);
+        }
     }
 
     /**
@@ -104,7 +124,6 @@ public class MeetController {
         return String.format("%02d", hours) + ":" + String.format("%02d", minutes) + ":" + String.format("%02d", seconds) + "." + delta_time;
     }
 
-    // I want to extend CustomNode, but I can't import that class for some reason.
     private class BoxContainer extends Parent {
         public double time;
         public HBox container;
@@ -124,9 +143,16 @@ public class MeetController {
         }
 
         public class AddButtonListener implements EventHandler<ActionEvent> {
-            public void handle(ActionEvent event ){
+            public void handle(ActionEvent event) {
                 Button source = (Button) event.getSource();
                 BoxContainer boxContainer = (BoxContainer) source.getParent().getParent();
+                int bibNumber = Integer.parseInt(boxContainer.boxTimeSlot.getText());
+                Athlete athlete = InformationController.meet.getAndRemoveAthlete(bibNumber);
+                if (athlete == null) {
+                    throw new RuntimeException("Athlete with bib number " + bibNumber + " is not in the meet or has already finished.");
+                }
+                athlete.finish((long) boxContainer.time);
+                athleteHeap.push(athlete);
                 boxes.getChildren().remove(boxContainer);
             }
         }

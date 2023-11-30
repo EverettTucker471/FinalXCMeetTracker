@@ -23,12 +23,15 @@ public class Main extends Application {
     public static Scene splashScene;
     public static Scene meetScene;
     public static Scene informationScene;
+    public static Scene resultsScene;
     @Override
     public void start(Stage stage) throws IOException {
         meetScene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("meet-screen.fxml"))), screenWidth, screenHeight);
         informationScene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("information-screen.fxml"))), screenWidth, screenHeight);
         SplashController splashController = new SplashController();
         splashController.init(stage);
+        resultsScene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("results-screen.fxml"))), screenWidth, screenHeight);
+
         stage.setScene(splashScene);
         stage.show();
     }

@@ -20,4 +20,6 @@
     <Button text="Begin Meet" fx:id="beginMeetButton" onAction="#onBeginMeetButtonClick"/>
     <Button text="Stop Meet" fx:id="stopMeetButton" onAction="#onStopMeetButtonClick"/>
     <Button text="Enter Meet Information" fx:id="enterMeetInformationButton" onAction="#onEnterMeetInformationButtonClick"/>
+    <Button text="View Results" fx:id="viewResultsButton" onAction="#onViewResultsButtonClick"/>
+    <Button text="Undo Last Action" fx:id="undoButton" onAction="#onUndoButtonClick"/>
 </VBox>

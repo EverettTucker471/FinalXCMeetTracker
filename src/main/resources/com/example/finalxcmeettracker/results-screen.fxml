@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.finalxcmeettracker.ResultsController">
+
+    <Label text="Top Athletes:" fx:id="athleteLabel"/>
+    <Label text="Top Teams:" fx:id="teamLabel"/>
+    <Button text="Tabulate Results" fx:id="tabulateResultsButton" onAction="#onTabulateResultsButtonClick"/>
+    <Button text="Return" fx:id="returnButton" onAction="#onReturnButtonClick"/>
+
+</VBox>
