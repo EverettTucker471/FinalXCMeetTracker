@@ -36,9 +36,7 @@ public class ResultsController {
     }
     @FXML
     protected void onReturnButtonClick() {
-        Stage stage = (Stage) athleteLabel.getScene().getWindow();
-        stage.setScene(Main.meetScene);
-        stage.show();
+        Main.splashController.reset();
     }
 
     private String formatTime(long time) {
