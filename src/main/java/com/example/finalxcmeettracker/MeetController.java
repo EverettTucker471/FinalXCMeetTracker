@@ -45,6 +45,7 @@ public class MeetController {
         stage.setScene(Main.meetScene);
         stage.setWidth(640);
         stage.setHeight(480);
+        stage.setMaximized(true);
         stage.show();
     }
 
@@ -177,6 +178,7 @@ public class MeetController {
             stage.setScene(Main.resultsScene);
             stage.setHeight(Main.screenHeight);
             stage.setWidth(Main.screenWidth);
+            stage.setMaximized(true);
             stage.show();
         }
     }

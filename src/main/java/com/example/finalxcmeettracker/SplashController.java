@@ -18,6 +18,7 @@ public class SplashController {
         stage.setWidth(640);
         stage.setHeight(480);
         stage.setScene(Main.splashScene);
+        stage.setMaximized(true);
         stage.show();
     }
 

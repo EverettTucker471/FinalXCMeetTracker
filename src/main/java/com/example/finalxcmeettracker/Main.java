@@ -28,8 +28,9 @@ public class Main extends Application {
     public static MeetController meetController;
     public static InformationController informationController;
     public static SplashController splashController;
+    public static ResultsController resultsController;
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
         meetController = new MeetController();
         meetController.init(stage);
 
@@ -39,7 +40,8 @@ public class Main extends Application {
         splashController = new SplashController();
         splashController.init(stage);
 
-        resultsScene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("results-screen.fxml"))), screenWidth, screenHeight);
+        resultsController = new ResultsController();
+        resultsController.init(stage);
 
         hostServices = getHostServices();
         Main.splashController.reset();

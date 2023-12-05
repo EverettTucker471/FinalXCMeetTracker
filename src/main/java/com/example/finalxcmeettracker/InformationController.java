@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 
 public class InformationController {
     public static final Meet meet = new Meet();
-
     private Stage stage;
     private TextField enterTeamField, enterAthleteField;
     private ChoiceBox<String> selectTeamField;
@@ -62,7 +61,7 @@ public class InformationController {
         leftGlass.getChildren().add(leftGlassHolder);
 
         // adds components to right glass
-        Label currentDataLabel = new Label("Current Meet Data: ");
+        Label currentDataLabel = new Label("Current Meet Data: Bib # | Name | Team");
         currentDataLabel.setStyle("-fx-font: 20 \"montserrat\"; -fx-text-fill: rgba(255, 255, 255, 1);");
 
         VBox rightGlassHolder = new VBox(8);
@@ -83,10 +82,7 @@ public class InformationController {
         rightGlassHolder.getChildren().addAll(currentDataLabel, scrollPane, returnButton);
         rightGlass.getChildren().add(rightGlassHolder);
 
-//        leftGlass.setMaxSize(vBox.getPrefWidth(), vBox.getPrefHeight());
-//        layout.setMaxSize(leftGlass.getMaxWidth() + 40, leftGlass.getMaxHeight() + 40);
         Main.informationScene = new Scene(layout, layout.getMaxWidth(), layout.getMaxHeight());
-
     }
 
     public void reset() {
@@ -113,7 +109,6 @@ public class InformationController {
     }
 
     private class EnterAthleteHandler implements EventHandler<ActionEvent> {
-
         @Override
         public void handle(ActionEvent actionEvent) {
             String athleteName = enterAthleteField.getText();
@@ -129,14 +124,13 @@ public class InformationController {
             athlete.setBibNumber(meet.getNumAthletes());
 
             // Adding this information to a label so that the organizer can check their information
-            Label label = new Label(athleteName + " - " + team.getName());
+            Label label = new Label(athlete.getBibNumber() + " | " + athlete.getName() + " | " + team.getName());
             label.setStyle("-fx-font: 10 \"montserrat\"; -fx-text-fill: rgba(0, 0, 0, 1);");
             currentData.getChildren().add(label);
         }
     }
 
     private class ReturnHandler implements EventHandler<ActionEvent> {
-
         @Override
         public void handle(ActionEvent actionEvent) {
             meet.generateBibNumbers();

@@ -52,6 +52,12 @@ public class Stack<T> {
     private class Node<T> {
         T val;
         Node<T> next;
+
+        /**
+         * Creates a new Node<T> with the desired parameters
+         * @param value T, the value of the Node
+         * @param next Node<T> the Node this Node points to
+         */
         public Node(T value, Node<T> next) {
             this.val = value;
             this.next = next;
