@@ -11,13 +11,14 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * Controls the results scene
+ */
 public class ResultsController {
-    private Button returnButton, tabulateResultsButton;
-    public boolean initialized;
-    public VBox athleteBox, teamBox;
-    public Stage stage;
+    private VBox athleteBox, teamBox;
+    private Stage stage;
 
-    public class TabulateResultsHandler implements EventHandler<ActionEvent> {
+    private class TabulateResultsHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent actionEvent) {
             Heap<Athlete> heap = MeetController.athleteHeap;
@@ -44,12 +45,16 @@ public class ResultsController {
             }
         }
     }
-    public class ReturnHandler implements EventHandler<ActionEvent> {
+    private class ReturnHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent actionEvent) {
             Main.splashController.reset();
         }
     }
+
+    /**
+     * Resets the results scene
+     */
     public void reset() {
         athleteBox.getChildren().clear();
         teamBox.getChildren().clear();
@@ -61,8 +66,11 @@ public class ResultsController {
         stage.show();
     }
 
+    /**
+     * Initializes the results scene
+     * @param stage the stage used after launch
+     */
     public void init(Stage stage) {
-        initialized = true;
         this.stage = stage;
 
         // make layout
@@ -71,8 +79,8 @@ public class ResultsController {
         layout.setStyle(Main.layoutStyle);
 
         // add buttons
-        tabulateResultsButton = new Button("Tabulate Meet Results");
-        returnButton = new Button("Return");
+        Button tabulateResultsButton = new Button("Tabulate Meet Results");
+        Button returnButton = new Button("Return");
         tabulateResultsButton.setStyle(Main.buttonStyle);
         returnButton.setStyle(Main.buttonStyle);
 

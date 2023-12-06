@@ -6,14 +6,19 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+/**
+ * Controls the splash scene
+ */
 public class SplashController {
     private Stage stage;
 
+    /**
+     * Resets the splash scene
+     */
     public void reset() {
         stage.setWidth(640);
         stage.setHeight(480);
@@ -43,14 +48,16 @@ public class SplashController {
         }
     }
 
+    /**
+     * Initializes the splash scene
+     * @param stage the stage used after launch
+     */
     public void init(Stage stage) {
         // gets main stage
         this.stage = stage;
 
         // handles background image
-        final ImageView imageView = new ImageView(
-                new Image("C:\\Users\\legoe\\IdeaProjects\\FinalXCMeetTracker\\src\\main\\resources\\com\\example\\finalxcmeettracker\\meetAppBackground.jpg")
-        );
+        final ImageView imageView = new ImageView("C:\\Users\\vince\\IdeaProjects\\FinalXCMeetTracker\\src\\main\\resources\\com\\example\\finalxcmeettracker\\meetAppBackground.jpg");
         imageView.setFitHeight(480);
         imageView.setFitWidth(640);
 

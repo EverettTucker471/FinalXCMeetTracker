@@ -9,12 +9,20 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * Controls the information scene
+ */
 public class InformationController {
     public static final Meet meet = new Meet();
     private Stage stage;
     private TextField enterTeamField, enterAthleteField;
     private ChoiceBox<String> selectTeamField;
     private VBox currentData;
+
+    /**
+     * Initializes the information scene
+     * @param stage the stage used after launch
+     */
     public void init(Stage stage) {
         this.stage = stage;
 
@@ -85,6 +93,9 @@ public class InformationController {
         Main.informationScene = new Scene(layout, layout.getMaxWidth(), layout.getMaxHeight());
     }
 
+    /**
+     * Resets the meet scene
+     */
     public void reset() {
         stage.setScene(Main.informationScene);
         stage.setWidth(Main.screenWidth - 800);

@@ -18,6 +18,9 @@ import javafx.stage.Stage;
 
 import java.util.*;
 
+/**
+ * Controls the meet scene
+ */
 public class MeetController {
     public static Heap<Athlete> athleteHeap;
     private Stack<BoxContainer> undoStack;
@@ -30,6 +33,9 @@ public class MeetController {
     private VBox buttonPane, boxes;
     public Label currentTimeLabel;
 
+    /**
+     * Resets the meet scene
+     */
     public void reset() {
         started = false;
 
@@ -49,6 +55,10 @@ public class MeetController {
         stage.show();
     }
 
+    /**
+     * Initializes the meet scene
+     * @param stage the stage used after launch
+     */
     public void init(Stage stage) {
         started = false;
         initialized = true;
@@ -114,7 +124,7 @@ public class MeetController {
         Main.meetScene = new Scene(layout, 640, 480);
     }
 
-    public class ReturnHandler implements EventHandler<ActionEvent> {
+    private class ReturnHandler implements EventHandler<ActionEvent> {
 
         @Override
         public void handle(ActionEvent actionEvent) {
@@ -122,7 +132,7 @@ public class MeetController {
         }
     }
 
-    public class StartStopMeetHandler implements EventHandler<ActionEvent> {
+    private class StartStopMeetHandler implements EventHandler<ActionEvent> {
 
         /**
          * This method cancels the Meet Timer forever, it cannot be undone.
@@ -161,7 +171,7 @@ public class MeetController {
         }
     }
 
-    public class AddTimeHandler implements EventHandler<ActionEvent> {
+    private class AddTimeHandler implements EventHandler<ActionEvent> {
 
         @Override
         public void handle(ActionEvent actionEvent) {
@@ -171,7 +181,7 @@ public class MeetController {
         }
     }
 
-    public class ViewResultsHandler implements EventHandler<ActionEvent> {
+    private class ViewResultsHandler implements EventHandler<ActionEvent> {
 
         @Override
         public void handle(ActionEvent actionEvent) {
@@ -183,8 +193,7 @@ public class MeetController {
         }
     }
 
-    //
-    public class UndoHandler implements EventHandler<ActionEvent> {
+    private class UndoHandler implements EventHandler<ActionEvent> {
 
         @Override
         public void handle(ActionEvent actionEvent) {
