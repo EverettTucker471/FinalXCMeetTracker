@@ -57,7 +57,7 @@ public class SplashController {
         this.stage = stage;
 
         // handles background image
-        final ImageView imageView = new ImageView("C:\\Users\\vince\\IdeaProjects\\FinalXCMeetTracker\\src\\main\\resources\\com\\example\\finalxcmeettracker\\meetAppBackground.jpg");
+        final ImageView imageView = new ImageView("C:\\Users\\legoe\\IdeaProjects\\FinalXCMeetTracker\\src\\main\\resources\\com\\example\\finalxcmeettracker\\meetAppBackground.jpg");
         imageView.setFitHeight(480);
         imageView.setFitWidth(640);
 

@@ -5,18 +5,18 @@ import javafx.application.HostServices;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
 import java.nio.file.Path;
 
 /**
  * Handles the launch of the XC Meet Tracker application and initializes the scene controllers
  */
 public class Main extends Application {
-    // Global variables for storing the screen size, might not be necessary
+    // Global variables for storing the screen size
     public static final int screenWidth = (int) Screen.getPrimary().getBounds().getWidth() - 100;
     public static final int screenHeight = (int) Screen.getPrimary().getBounds().getHeight() - 200;
     public static HostServices hostServices; // Used for opening websites from Javafx
 
+    // Scene Variables
     public static Scene splashScene;
     public static Scene meetScene;
     public static Scene informationScene;
@@ -31,6 +31,7 @@ public class Main extends Application {
     public static String glassStyle = "-fx-background-color: rgba(48, 40, 38, 0.5); -fx-background-radius: 10; -fx-padding: 10;";
     public static String textFieldLargeStyle = "-fx-font: 20 \"montserrat\";";
 
+    // Controllers
     public static MeetController meetController;
     public static InformationController informationController;
     public static SplashController splashController;

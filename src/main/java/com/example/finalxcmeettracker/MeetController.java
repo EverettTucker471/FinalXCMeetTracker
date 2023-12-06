@@ -22,16 +22,17 @@ import java.util.*;
  * Controls the meet scene
  */
 public class MeetController {
+    // Stores the Athletes in sorted order as they finish
     public static Heap<Athlete> athleteHeap;
     private Stack<BoxContainer> undoStack;
     private long timestamp;
-    public Timer meetTimer;
+    private Timer meetTimer;
     private Stage stage;
-    public boolean started;
-    public boolean initialized;
+    public boolean started; // Whether the Meet Screen is started
+    public boolean initialized; // Whether the Meet Screen has been initialized
     private Button startStopMeetButton, addTimeButton, viewResultsButton, undoButton, homeButton;
     private VBox buttonPane, boxes;
-    public Label currentTimeLabel;
+    private Label currentTimeLabel;
 
     /**
      * Resets the meet scene
@@ -125,7 +126,6 @@ public class MeetController {
     }
 
     private class ReturnHandler implements EventHandler<ActionEvent> {
-
         @Override
         public void handle(ActionEvent actionEvent) {
             Main.splashController.reset();
@@ -137,7 +137,6 @@ public class MeetController {
         /**
          * This method cancels the Meet Timer forever, it cannot be undone.
          * We shouldn't theoretically need to stop the meet timer until the meet is finished.
-         *
          * @param actionEvent stop meet event
          */
         @Override
@@ -172,7 +171,6 @@ public class MeetController {
     }
 
     private class AddTimeHandler implements EventHandler<ActionEvent> {
-
         @Override
         public void handle(ActionEvent actionEvent) {
             BoxContainer box = new BoxContainer(System.currentTimeMillis() - timestamp);
@@ -182,7 +180,6 @@ public class MeetController {
     }
 
     private class ViewResultsHandler implements EventHandler<ActionEvent> {
-
         @Override
         public void handle(ActionEvent actionEvent) {
             stage.setScene(Main.resultsScene);
@@ -194,7 +191,6 @@ public class MeetController {
     }
 
     private class UndoHandler implements EventHandler<ActionEvent> {
-
         @Override
         public void handle(ActionEvent actionEvent) {
             if (!undoStack.isEmpty()) {
@@ -213,7 +209,6 @@ public class MeetController {
 
     /**
      * Formats the time
-     *
      * @return time in the format HH:MM:SS.sss
      */
     public String getFormattedTime() {

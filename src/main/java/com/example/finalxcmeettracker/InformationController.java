@@ -13,6 +13,7 @@ import javafx.stage.Stage;
  * Controls the information scene
  */
 public class InformationController {
+    // Used to store all the information about the meet
     public static final Meet meet = new Meet();
     private Stage stage;
     private TextField enterTeamField, enterAthleteField;
@@ -108,7 +109,6 @@ public class InformationController {
     }
 
     private class EnterTeamHandler implements EventHandler<ActionEvent> {
-
         @Override
         public void handle(ActionEvent actionEvent) {
             String teamName = enterTeamField.getText();
